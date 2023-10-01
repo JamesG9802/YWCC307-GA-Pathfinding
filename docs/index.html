@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Using Genetic Algorithms to Find the Best Path</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+          </style>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <script src="scripts.js"></script>
+        <div class="content">
+            <h1>Using Genetic Algorithms to Find the Best Path</h1>
+            <div class="row">
+                <p>James Gaiser / October 1, 2023</p>
+            </div>
+            <h2>Current State of Pathfinding</h2>
+            <p>
+                Pathfinding, that is the task of trying to determine a path between a starting point and an end point, has had a known solution for over 50 years at this point: A*. It works by looking at all its possible options that take it the closest to the end goal. With a good heuristic, it is guaranteed to find an optimal path and is commonly used today.
+            </p>
+            <figure>
+                <img src="https://i.imgur.com/YjfzxXY.gif">
+                <figcaption>
+                    By <a target="_blank" rel="noreferrer"
+                    href="https://www.reddit.com/r/gifs/comments/2kgdvi/a_algorithm_animation/">
+                    Ghost_Animator.
+                    </a>
+                </figcaption>
+            </figure>
+            <p>
+                However, a key weakness of A* is its high computational cost; it must consider a large number of nodes to find its path. This can turn out to be a big problem, considering one of A*’s main usage is in video games where performance can heavily influence the quality of a program. 
+            </p>
+            <h2>Introducing Genetic Algorithms</h2>
+            <p>
+                Genetic algorithms have promise to help optimize path finding. They work by encoding different behaviors into data structures that act like genes in an animal and are selectively pruned over generations akin to natural selection in real species. From what I have seen online, there are two approaches of implementing genetic algorithms that would be helpful to look at. 
+            </p>
+            <p>
+                The first kind is a pure genetic algorithm approach where you simply give a genetic algorithm a map and let it find the best path. They can handle a wide variety of starting conditions and they tend to get better at finding a path with each successive generation.  However, these algorithms appear to have a poor ability to generalize; that is if you were to take the genes of a model already trained on one map and placed it on another, they would need to train again to recover the same level of fitness.
+            </p>
+            <figure>
+                <img src="https://user-images.githubusercontent.com/37571161/58662732-51820100-8344-11e9-97fb-a66e6e1cc877.gif">
+                <figcaption>
+                    By <a target="_blank" rel="noreferrer"
+                    href="https://github.com/Yaaximus/genetic-algorithm-path-planning">
+                    Yasim-Ahmad.
+                    </a>
+                </figcaption>
+            </figure>
+            <p>
+                Clearly the problem lies in how we are using genetic algorithms. Essentially we trained a genetic algorithm to solve a single map when in actuality we want it to be able to find a path in any solvable map. A better idea would be to use a genetic algorithm informed approach where we still utilize traditional pathfinding algorithms like A* or Best-First-Search. 
+            </p>
+            <p>
+                In a paper by Santos et al, genetic algorithms were suggested as a way to simplify the map for traditional algorithms to work on. This was achieved by training the model on recognizing patterns in maps and having it generate a smaller path through these patterns, decreasing the amount of nodes that need to be searched. 
+            </p>
+            <figure>
+                <img src="https://media.discordapp.net/attachments/756219315996459081/1158087985552691261/image.png">
+                <figcaption>
+                    Arrows refer to paths generated path genetic algorithm. 'C' refers to path taken by Best-First-Search. 'O' refers to nodes looked at.
+                    By <a target="_blank" rel="noreferrer"
+                    href="https://www.sbgames.org/sbgames2012/proceedings/papers/computacao/comp-full_09.pdf">
+                    Santos et al.
+                    </a>
+                </figcaption>
+            </figure>
+            <h2>Key Takeaways</h2>
+            <p>
+                With careful implementation, genetic algorithms can be extremely helpful in optimizing path finding algorithms. They operate best when they aid the search of already established pathfinding algorithms and can create considerable performance increases.
+            </p>
+            <div><a 
+                target="_blank"
+                rel="noreferrer"
+                href="https://docs.google.com/presentation/d/1jCG8s0pZLmkIoExeP7urATX8ecyZeZobm5HWwS-HS4g/edit#slide=id.g28609129a4c_0_45">
+                Related powerpoint.
+            </a></div>
+            <div><a 
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.reddit.com/r/gifs/comments/2kgdvi/a_algorithm_animation/">
+                A* animation.
+            </a></div>
+            <div><a 
+                target="_blank" 
+                rel="noreferrer"
+                href="https://github.com/Yaaximus/genetic-algorithm-path-planning">
+                Genetic algorithm animation.
+            </a></div>
+            <div><a 
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.sbgames.org/sbgames2012/proceedings/papers/computacao/comp-full_09.pdf">
+                Genetic algorithm aided pathfinding paper.
+            </a></div>
+            
+        </div>
+        
+
+    </body>
+</html>
+
